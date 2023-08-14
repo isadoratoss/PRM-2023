@@ -14,7 +14,7 @@ function TopicCardHeader() {
                 </Typography>
 
                 <Typography variant="caption">
-                    Criado há oito horas
+                    Criado há 8 horas
                 </Typography>
 
             </div>
