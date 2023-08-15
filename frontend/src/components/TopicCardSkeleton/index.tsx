@@ -1,4 +1,3 @@
-import { Style } from "@mui/icons-material"
 import { Box, Skeleton } from "@mui/material"
 
 function TopicCardSkeleton() {
