@@ -1,5 +1,7 @@
 import { Avatar, Box, Typography } from "@mui/material";
 
+import {FormattedDate} from "react-intl";
+
 //import de imagens
 import banner from '../../assets/img/profile_banner.png';
 import avatar from '../../assets/img/profile_avatar.jpg';
@@ -7,8 +9,15 @@ import { CalendarMonthOutlined } from "@mui/icons-material";
 
 //import do estilo
 import'./style.css'
+import { IntlProvider } from "react-intl";
 
-function HeaderProfile (){
+type HeaderProfileProps = {
+    user: any
+}
+
+function HeaderProfile ({
+    user
+} : HeaderProfileProps){
     return(
         <Box id="header-profile">
 
@@ -17,24 +26,27 @@ function HeaderProfile (){
         </Box>
 
         <Box className="header-profile-detail">
-            <Avatar alt="Fulano de Tal" style={{width:128, height: 128}} 
+            <Avatar alt={user.fullname} style={{width:128, height: 128}} 
                     src={avatar} className="header-profile-detail-avatar"/>
             <Box className="header-profile-detail-text" >
                 <Typography variant="h5">
-                    Fulano de Tal
+                    {user.fullname}
                 </Typography>
 
                 <Typography variant="subtitle1" component="h6">
-                    @fulanoDeTal
+                    @{ user.username}
                 </Typography>
 
                 <Typography variant="subtitle1" component="p">
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Porro accusantium dolor consectetur cumque rerum asperiores voluptas veritatis delectus nobis explicabo, rem nulla odio dolorem molestiae odit! Repudiandae provident enim numquam!
+                    {user.description}
                 </Typography>
 
                 <Typography variant="caption">
                     <CalendarMonthOutlined />
-                    Entrou em Agosto de 2023
+                    <IntlProvider locale="pt-BR" >
+                        Entrou em <FormattedDate value={user.createdAt} month="long" year="numeric" />
+                    </IntlProvider>
+                   
                 </Typography>
 
             </Box>
