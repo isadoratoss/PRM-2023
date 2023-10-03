@@ -1,25 +1,25 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
-
+import { Column, CreateDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity()
-export class User{
-
+export class User {
     @PrimaryGeneratedColumn()
     id: number;
-    
-    @Column({nullable: false, length:50})
+
+    @Column({nullable: false, length: 50})
     fullname: string;
 
-    @Column({nullable: false, length:50})
+    @Column({nullable: false, length: 20})
     username: string;
 
     @Column({length: 250})
     description: string;
 
-    @CreatedDateColumn({name: 'created_at'})
-    createdAt: Date;
-}
+    @Column({nullable: false, length: 20})
+    password: string;
 
-function CreatedDateColumn(arg0: { name: string; }): (target: User, propertyKey: "createdAt") => void {
-    throw new Error("Function not implemented.");
+    @CreateDateColumn({name: 'created_at'})
+    createdAt: Date;
+
+    @UpdateDateColumn({name: 'updated_at'})
+    updatedAt: Date;
 }

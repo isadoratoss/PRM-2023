@@ -3,13 +3,13 @@ import { Injectable } from "@nestjs/common";
 @Injectable()
 export class ProfileService {
 
-profile() {
-    return{
-        fullname: 'Isadora P Toss',
-        username: 'IsaToss',
-        description: 'Isso é um teste',
-        createdAt: '2022-08-13'
-    }
-}
+    profile() {
+        return {
+            fullname: 'Breno Balbinotti de Mello',
+            username: 'BrenodeMello',
+            description: 'não sei o que escrever',
+            creatdAt: '2023-08-15'
+        }
 
+    }
 }
