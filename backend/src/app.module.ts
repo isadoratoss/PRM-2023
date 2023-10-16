@@ -10,10 +10,18 @@ import { UserController } from './controllers/user.controller';
 import { Topic } from './entities/topic.entity';
 import { TopicController } from './controllers/topic.controller';
 import { TopicService } from './services/topic.service';
+import { JwtModule } from '@nestjs/jwt';
+import { AuthController } from './controllers/auth.controller';
+import { AuthService } from './services/auth.service';
 
 
 @Module({
   imports: [
+    JwtModule.register({
+      global: true,
+      secret: 'materdei',
+      signOptions: { expiresIn: '60s' },
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
@@ -23,10 +31,12 @@ import { TopicService } from './services/topic.service';
       database: 'prm_2023',
       entities: [User, Topic],
       synchronize: true,
-    }),
+    }), 
     TypeOrmModule.forFeature([User, Topic])
   ],
-  controllers: [AppController, ProfileController, UserController, TopicController],
-  providers: [AppService, ProfileService, UserService, TopicService],
-})
+  controllers: [AppController, ProfileController, UserController, TopicController, AuthController],
+  providers: [AppService, ProfileService, UserService, TopicService, AuthService],
+}
+)
 export class AppModule {}
+
